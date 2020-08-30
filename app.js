@@ -9,6 +9,8 @@ const bodyParser = require('body-parser');
 const path = require('path');
 
 const passport = require('passport');
+app.use(passport.initialize());
+require('./config/passport')(passport);
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("frontend/build"));
@@ -18,8 +20,6 @@ if (process.env.NODE_ENV === "production") {
 }
 
 
-app.use(passport.initialize());
-require('./config/passport')(passport);
 
 
 mongoose
